@@ -1,10 +1,10 @@
 # Roadmap
 
-Small, PR-sized milestones. Each one teaches a concept and ends with verifiable acceptance criteria. Status values are ⬜ planned, 🟨 in progress and ✅ done.
+Small, PR-sized milestones. Each one delivers a working capability and ends with verifiable acceptance criteria. Milestones are tracked as [GitHub Milestones](https://github.com/Mahbubur-rahman-mishal/fullstack-template/milestones). Status values are ⬜ planned, 🟨 in progress and ✅ done.
 
 | #   | Milestone                                              | Status |
 | --- | ------------------------------------------------------ | ------ |
-| M0  | Foundations                                            | 🟨     |
+| M0  | Foundations                                            | ✅     |
 | M1  | Backend skeleton                                       | ⬜     |
 | M2  | Frontend skeleton                                      | ⬜     |
 | M3  | Container image and local stack                        | ⬜     |
@@ -16,7 +16,7 @@ Small, PR-sized milestones. Each one teaches a concept and ends with verifiable 
 | M7b | Deployment pipeline (staging and prod)                 | ⬜     |
 | M7c | Backups and disaster recovery                          | ⬜     |
 | M8  | Hardening and template release                         | ⬜     |
-| M9  | Create muslim-habit from the template                  | ⬜     |
+| M9  | First product from the template                        | ⬜     |
 
 ---
 
@@ -24,11 +24,11 @@ Small, PR-sized milestones. Each one teaches a concept and ends with verifiable 
 
 **Focus:** repository hygiene, decision records, agent design, reproducible dev environments.
 
-- [ ] Repo on GitHub (public). `main` protected by a ruleset (PR required, no force-push or deletion, linear history).
-- [ ] CLAUDE.md, 5 agent definitions, and hooks that block `.env` access and edits to merged migrations (`pnpm test:hooks` passes).
-- [ ] The Dev Container builds. `java -version` reports 25 and `node -v` reports 26.
-- [ ] An invalid commit message is rejected by lefthook and commitlint.
-- [ ] ADRs 0001–0011, architecture overview and engineering standards written.
+- [x] Repo on GitHub (public). `main` protected by a ruleset (PR required, squash-only, no force-push or deletion, linear history).
+- [x] CLAUDE.md, 5 agent definitions, and hooks that block `.env` access and edits to merged migrations (`pnpm test:hooks` passes).
+- [x] The Dev Container builds. `java -version` reports 25 and `node -v` reports 26.
+- [x] An invalid commit message is rejected by lefthook and commitlint.
+- [x] ADRs 0001–0011, architecture overview and engineering standards written.
 
 ## M1: Backend skeleton
 
@@ -114,6 +114,6 @@ Small, PR-sized milestones. Each one teaches a concept and ends with verifiable 
 - [ ] The secret-rotation runbook is rehearsed. An optional cold-start experiment is done (Java AOT cache or native image).
 - [ ] The repo is marked as a GitHub template with a rename script. A new project works in under 30 minutes by following the README.
 
-## M9: muslim-habit
+## M9: First product from the template
 
-- [ ] A private repo created from the template replaces the demo deployment. The GitHub plan decision is recorded.
+- [ ] A product repository generated from the template replaces the demo deployment, and the generation guide is validated end to end.
