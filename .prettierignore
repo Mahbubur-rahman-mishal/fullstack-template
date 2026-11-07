@@ -1,0 +1,5 @@
+# Generated files
+pnpm-lock.yaml
+.devcontainer/devcontainer-lock.json
+# Java sources are formatted by Spotless (M1)
+backend/

@@ -1,0 +1,16 @@
+# Git hooks, installed automatically by `pnpm install` (the "prepare" script).
+# Run git inside the Dev Container: the lefthook binary in node_modules is Linux-only there.
+# CI re-checks everything, so a skipped local hook can never reach main.
+
+pre-commit:
+  commands:
+    prettier:
+      glob: '*.{md,json,yml,yaml,js,mjs,cjs,ts,tsx,css}'
+      run: pnpm exec prettier --write --ignore-unknown {staged_files}
+      stage_fixed: true
+    # Spotless (Java) is added in M1.
+
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm exec commitlint --edit {1}

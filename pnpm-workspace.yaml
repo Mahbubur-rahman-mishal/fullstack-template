@@ -1,0 +1,6 @@
+# pnpm workspace. frontend/ and e2e/ are added as packages in M2/M3.
+
+# Supply-chain safety: pnpm blocks dependency install scripts unless approved here.
+# Only approve packages that genuinely need a build step.
+allowBuilds:
+  lefthook: true # installs the git hooks binary

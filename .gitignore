@@ -1,0 +1,59 @@
+# ---- Secrets (never commit) ----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*-key.json
+service-account*.json
+
+# ---- Node / frontend ----
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.vite/
+.pnpm-store/
+npm-debug.log*
+pnpm-debug.log*
+
+# ---- Playwright ----
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
+
+# ---- Java / backend ----
+target/
+!.mvn/wrapper/maven-wrapper.jar
+*.class
+hs_err_pid*.log
+
+# ---- Terraform ----
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+crash.*.log
+*.auto.tfvars
+terraform.tfvars
+# .terraform.lock.hcl IS committed
+
+# ---- Cloudflare ----
+.wrangler/
+.dev.vars
+
+# ---- Claude Code (personal overrides only) ----
+.claude/settings.local.json
+
+# ---- IDE / OS ----
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.DS_Store
+Thumbs.db
+*.log

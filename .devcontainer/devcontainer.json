@@ -1,0 +1,75 @@
+// Reproducible development environment. Every tool version the project needs
+// is pinned here, so a fresh clone works the same on any machine. See ADR 0011.
+{
+  "name": "fullstack-template",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+
+  "features": {
+    // Java 25 LTS (Eclipse Temurin). Maven comes from the project's Maven Wrapper (M1).
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "25",
+      "jdkDistro": "tem",
+      "installMaven": "false",
+      "installGradle": "false"
+    },
+    // Node 26 LTS ("Lithium") + pnpm.
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "26",
+      "pnpmVersion": "12.15.0"
+    },
+    // Uses the host's Docker engine (Docker Desktop) for Compose and Testcontainers.
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    // Infrastructure tooling (used from M7). Versions are pinned in infra/ when it lands.
+    "ghcr.io/devcontainers/features/terraform:1": {},
+    "ghcr.io/dhoeric/features/google-cloud-cli:1": {},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
+  },
+
+  // Caches survive container rebuilds. node_modules lives in a volume because
+  // reading thousands of small files through a Windows bind mount is very slow
+  // (commitlint took ~60 s per commit without this).
+  "mounts": [
+    "source=fullstack-template-m2,target=/home/vscode/.m2,type=volume",
+    "source=fullstack-template-pnpm,target=/home/vscode/.local/share/pnpm,type=volume",
+    "source=fullstack-template-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+  ],
+
+  "containerEnv": {
+    // Testcontainers inside a container talking to the host's Docker (Docker Desktop).
+    "TESTCONTAINERS_HOST_OVERRIDE": "host.docker.internal"
+  },
+
+  "forwardPorts": [5173, 8080],
+  "portsAttributes": {
+    "5173": { "label": "frontend (Vite)" },
+    "8080": { "label": "backend (Spring Boot)" }
+  },
+
+  // The bind-mounted repo is owned by a different uid, so git must trust it
+  // *before* `pnpm install` runs lefthook (which calls git).
+  "postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && sudo chown -R vscode:vscode /home/vscode/.m2 /home/vscode/.local/share/pnpm ${containerWorkspaceFolder}/node_modules && pnpm install",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "anthropic.claude-code",
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-boot-dev-pack",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "ms-playwright.playwright",
+        "hashicorp.terraform",
+        "github.vscode-github-actions",
+        "editorconfig.editorconfig"
+      ],
+      "settings": {
+        "files.eol": "\n",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+
+  "remoteUser": "vscode"
+}

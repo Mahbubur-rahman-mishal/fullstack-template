@@ -1,0 +1,24 @@
+name: Feature
+description: Propose a new capability
+labels: [feature]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / user need
+      description: Who needs what, and why?
+    validations:
+      required: true
+  - type: textarea
+    id: criteria
+    attributes:
+      label: Acceptance criteria
+      description: Testable bullet points. These drive the plan and the tests.
+      placeholder: |
+        - Given … when … then …
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes (API, UX, data, cost, security)
